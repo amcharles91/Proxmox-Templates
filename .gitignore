@@ -107,3 +107,6 @@ $RECYCLE.BIN/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
+
+# ignore user-data
+*/user-data
