@@ -7,7 +7,21 @@ variable "proxmox_api_token_id" {
 }
 
 variable "proxmox_vm_user" {
-  type = string
+  description = "Default users name"
+  type        = string
+  // No default provided, as a username is typically required
+}
+
+variable "proxmox_vm_password" {
+  description = "Default users password"
+  type        = string
+  default     = null # Default to an empty string if no password is provided
+}
+
+variable "proxmox_vm_ssh_public_keys" {
+  description = "SSH public keys"
+  type        = list(string)
+  default     = null # Default to an empty list if no keys are provided
 }
 
 variable "pm_tls_insecure" {
@@ -81,7 +95,7 @@ variable "servervms" {
       vlan_id       = 150
       agent_enabled = true
       agent_trim    = true
-      target_node   = "node1"
+      target_node   = "rkspve1"
       target_pool   = "home"
     },
     "vm2" = {
@@ -110,8 +124,8 @@ variable "servervms" {
       index          = 3
       name           = "examplevm"
       desc           = "Example VM 1 Description"
-      tags           = ["tag1", "tag2"]
-      clone_target   = 916
+      tags           = ["tag1", "tag3"]
+      clone_target   = 917
       memory         = 4096
       cpu_cores      = 2
       datastore_id   = "local-zfs"
